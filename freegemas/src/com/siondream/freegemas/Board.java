@@ -27,22 +27,13 @@ public class Board {
 
 	//TODO
 	public void fillInitialBoard() {
-		do {
-			System.out.println("### Generating...");
-
-			for (int y = 0; y < size; ++y) {
-				for (int x = 0; x < size; ++x) {
-					_squares[x][y] = new Square(Square.numToType(MathUtils.random(1, 7)));
-					_squares[x][y].fallStartPosY = y-size;
-													//(int)MathUtils.random(-7, -1);
-					_squares[x][y].fallDistance = size;
-													//y - _squares[x][y].fallStartPosY;
-				}
+		for (int y = 0; y < size; ++y) {
+			for (int x = 0; x < size; ++x) {
+				_squares[x][y] = new Square(Square.numToType(MathUtils.random(1, 7)));
+				_squares[x][y].fallStartPosY = y-size;
+				_squares[x][y].fallDistance = size;
 			}
-
-		} while(has_matches());
-
-		System.out.println("The generated board has no matches and some possible solutions.");
+		}
 	}
 
 
@@ -77,41 +68,13 @@ public class Board {
 	//return the position of first square that doesnt match the given square
 	public int buildPossibleMatchHorizontal(int x, int y) {
 		Coord[] possibleMatch = new Coord[1];
-		possibleMatch[0] = new Coord(x,y);
-		
-		int ctr=1;
-		int scanPosition = x + 1;
-		while (scanPosition < size && _squares[scanPosition][y].equals(_squares[x][y])) {
-			if(ctr>=possibleMatch.length){
-				possibleMatch = expandArray(possibleMatch);
-			}
-			possibleMatch[ctr] = new Coord(scanPosition,y);
-			ctr++;				
-			scanPosition++;
-		}
-		if(possibleMatch.length>=3){
-			_matches.add(convert(possibleMatch));
-		}
+
 		return x+possibleMatch.length;
 	}
 
 	public int buildPossibleMatchVertical(int x, int y) {
 		Coord[] possibleMatch = new Coord[1];
-		possibleMatch[0] = new Coord(x,y);
-		
-		int ctr=1;
-		int scanPosition = y + 1;
-		while (scanPosition < size &&_squares[x][scanPosition].equals(_squares[x][y])) {
-			if(ctr>=possibleMatch.length){
-				possibleMatch = expandArray(possibleMatch);
-			}
-			possibleMatch[ctr] = new Coord(x,scanPosition);
-			ctr++;	
-			scanPosition++;
-		}
-		if(possibleMatch.length>=3){
-			_matches.add(convert(possibleMatch));
-		}
+
 		return y+possibleMatch.length;
 	}
 	
@@ -124,11 +87,7 @@ public class Board {
 	
 	//return a new array with all the same elements, but one extra space
 	private Coord[] expandArray(Coord[] originalArray) {
-		Coord[] newArray = new Coord[originalArray.length+1];
-		for(int i=0; i<originalArray.length; i++){
-			newArray[i]=originalArray[i];
-		}
-		return newArray;
+		return null;
 	}
 
 

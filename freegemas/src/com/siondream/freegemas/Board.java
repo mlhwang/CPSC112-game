@@ -19,9 +19,6 @@ public class Board {
 
 	//TODO
 	public void swap(int x1, int y1, int x2, int y2) {
-		Square temp = _squares[x1][y1];
-		_squares[x1][y1] = _squares[x2][y2]; 
-		_squares[x2][y2] = temp;
 
 	}
 

@@ -24,13 +24,11 @@ public class Board {
 
 	//TODO
 	public void fillInitialBoard() {
-		for (int y = 0; y < size; ++y) {
-			for (int x = 0; x < size; ++x) {
-				_squares[x][y] = new Square(Square.numToType(MathUtils.random(1, 7)));
-				_squares[x][y].fallStartPosY = y-size;
-				_squares[x][y].fallDistance = size;
-			}
-		}
+		int y = size-1;
+		_squares[0][y] = new Square(Square.numToType(MathUtils.random(1, 7)));
+		_squares[0][y].fallStartPosY = y-size;
+		_squares[0][y].fallDistance = size;
+		
 	}
 
 
@@ -88,8 +86,15 @@ public class Board {
 	}
 
 
-	//TODO
+	
+	
+	//NO NEED TO EDIT OR UNDERSTAND BELOW THIS LINE
+	//FEEL FREE TO CHECK THESE OUT AS EXAMPLES IF YOU LIKE
+	
+	
 	public void deleteMatches() {
+		//THIS USES SOME STUFF WE HAVEN'T COVERED YET
+		//NOT A GREAT EXAMPLE TO LOOK AT
 		ListOfMatches matches = find_matches();
 		for (int i = 0; i < matches.size(); ++i) {
 			for (int j = 0; j < matches.get(i).size(); ++j) {
@@ -113,10 +118,7 @@ public class Board {
 		_squares[x][y].setType(Square.getDualType(_squares[x][y].getType()));
 	}
 	
-	
-	
-	//NO NEED TO EDIT BELOW THIS LINE
-	//FEEL FREE TO CHECK THESE OUT AS EXAMPLES IF YOU LIKE
+
 
 	public void fillSpaces() {
 		for(int x = 0; x < size; ++x){
@@ -192,9 +194,11 @@ public class Board {
 	public void endAnimation() {
 		for(int x = 0; x < size; ++x){
 			for(int y = 0; y < size; ++y){
+				if(_squares[x][y]!=null){
 				_squares[x][y].mustFall = false;
 				_squares[x][y].fallStartPosY = y;
 				_squares[x][y].fallDistance = 0;
+				}
 			}
 		}
 	}

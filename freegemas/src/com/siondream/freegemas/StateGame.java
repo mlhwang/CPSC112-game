@@ -661,6 +661,7 @@ public class StateGame extends State {
 
 	                // Check the type of each square and
 	                // save the proper image in the img pointer
+	            	if(_board.getSquare(i, j)!=null){
 	                switch (_board.getSquare(i, j).getType()) {
 	                case sqWhite:
 	                    img = _imgWhite;
@@ -697,7 +698,7 @@ public class StateGame extends State {
 						break;
 
 	                } // switch end
-	                
+	            	}
 	             // Now, if img is not NULL (there's something to draw)
 	                if (img != null) {
 	                    // Default positions

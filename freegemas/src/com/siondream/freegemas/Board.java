@@ -40,7 +40,7 @@ public class Board {
 				}
 			}
 
-		} while(has_matches() || find_solutions().length == 0);
+		} while(has_matches());
 
 		System.out.println("The generated board has no matches and some possible solutions.");
 	}
@@ -118,63 +118,8 @@ public class Board {
 	//TODO
 	//return an array of positions that could be swapped in some direction to create a match 
 	public Coord[] find_solutions() {
-		foundSolutions = new Coord[0];
-		int ctr=0;
-
-		/* 
-	       Check all possible boards
-	       (49 * 4) + (32 * 2) although there are many duplicates
-		 */
-		for(int x = 0; x < size; ++x){
-			for(int y = 0; y < size; ++y){
-
-				// Swap with the one above and check
-				if (y > 0) {
-					swap(x, y, x, y - 1);
-					if (has_matches()) {
-						foundSolutions = expandArray(foundSolutions);
-						foundSolutions[ctr] = (new Coord(x,y));
-						ctr++;
-					}
-					swap(x, y, x, y - 1);
-				}
-
-				// Swap with the one below and check
-				if (y < size-1) {
-					swap(x, y, x, y + 1);
-					if (has_matches()) {
-						foundSolutions = expandArray(foundSolutions);
-						foundSolutions[ctr] = (new Coord(x,y));
-						ctr++;
-					}
-					swap(x, y, x, y + 1);
-				}
-
-				// Swap with the one on the left and check
-				if (x > 0) {
-					swap(x, y, x - 1, y);
-					if (has_matches()) {
-						foundSolutions = expandArray(foundSolutions);
-						foundSolutions[ctr] = (new Coord(x,y));
-						ctr++;
-					}
-					swap(x, y, x - 1, y);
-				}
-
-				// Swap with the one on the right and check
-				if (x < size-1) {
-					swap(x, y, x + 1, y);
-					if (has_matches()) {
-						foundSolutions = expandArray(foundSolutions);
-						foundSolutions[ctr] = (new Coord(x,y));
-						ctr++;
-					}
-					swap(x, y, x + 1, y);
-				}
-			}
-		}
-
-		return foundSolutions;
+		//asking for a hint will crash the program until you write this method
+		return new Coord[1];
 	}
 	
 	//return a new array with all the same elements, but one extra space
